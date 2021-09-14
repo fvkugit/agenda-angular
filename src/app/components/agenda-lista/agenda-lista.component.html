@@ -1,0 +1,19 @@
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#ID</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Número</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let contacto of listContactos">
+        <th scope="row">{{contacto.id}}</th>
+        <td>{{contacto.nombre}}</td>
+        <td>{{contacto.apellido}}</td>
+        <td>{{contacto.numero}}</td>
+      </tr>
+    </tbody>
+  </table>
+  
