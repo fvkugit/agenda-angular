@@ -4,13 +4,16 @@ import { Contacto } from 'src/app/interfaces/Contacto';
 import { ContactoServiceService } from 'src/app/services/contacto-service.service';
 
 @Component({
-  selector: 'app-agenda-lista',
-  templateUrl: './agenda-lista.component.html',
-  styleUrls: ['./agenda-lista.component.css']
+  selector: 'app-agenda-contactos',
+  templateUrl: './agenda-contactos.component.html',
+  styleUrls: ['./agenda-contactos.component.css']
 })
-export class AgendaListaComponent implements OnInit {
+export class AgendaContactosComponent implements OnInit {
 
-  listContactos: Contacto[] = []
+  listContactos: Contacto[] = [
+    {nombre:"Facundo", apellido:"Barral", numero:"12345"},
+    {nombre:"Lionel", apellido:"Messi", numero:"12345"},
+  ]
 
   constructor(private _dataService: ContactoServiceService, private router: Router) { }
 

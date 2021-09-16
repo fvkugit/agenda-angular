@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -7,6 +8,7 @@ import { AgendaListaComponent } from './components/agenda-lista/agenda-lista.com
 import { AgendaNavbarComponent } from './components/agenda-navbar/agenda-navbar.component';
 import { AgendaCrearContactoComponent } from './components/agenda-crear-contacto/agenda-crear-contacto.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AgendaContactosComponent } from './components/agenda-contactos/agenda-contactos.component';
 
 @NgModule({
   declarations: [
@@ -14,11 +16,13 @@ import { ReactiveFormsModule } from '@angular/forms';
     AgendaListaComponent,
     AgendaNavbarComponent,
     AgendaCrearContactoComponent,
+    AgendaContactosComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

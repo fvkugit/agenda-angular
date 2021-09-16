@@ -1,19 +1,27 @@
 <table class="table">
-    <thead class="thead-dark">
-      <tr>
-        <th scope="col">#ID</th>
-        <th scope="col">Nombre</th>
-        <th scope="col">Apellido</th>
-        <th scope="col">Número</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let contacto of listContactos">
-        <th scope="row">{{contacto.id}}</th>
-        <td>{{contacto.nombre}}</td>
-        <td>{{contacto.apellido}}</td>
-        <td>{{contacto.numero}}</td>
-      </tr>
-    </tbody>
-  </table>
-  
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Nombre</th>
+      <th scope="col">Apellido</th>
+      <th scope="col">Número</th>
+      <th scope="col">Correo</th>
+      <th scope="col" style="width: 4%"></th>
+      <th scope="col" style="width: 4%"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let contacto of listContactos">
+      <td>{{ contacto.nombre }}</td>
+      <td>{{ contacto.apellido }}</td>
+      <td>{{ contacto.numero }}</td>
+      <td>{{ contacto.nombre.toLowerCase() }}{{ contacto.apellido.toLowerCase() }}@email.com</td>
+      <td>
+        <a [routerLink]="['/editar', contacto.id]"><h5><i class="bi bi-pencil-fill"></i></h5></a>
+      </td>
+      <td>
+        <a (click)="eliminarContacto(contacto.id)" routerLink="/" ><h5><i style="font-size: large" class="bi bi-person-dash-fill"></i></h5></a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 *ngIf="listContactos.length === 0" style="text-align: center;">¡Ups! No se han encontrado contactos.</h2>

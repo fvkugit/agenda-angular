@@ -1,0 +1,26 @@
+<div
+  *ngFor="let contacto of listContactos"
+  class="me-5 ms-5 mt-5"
+>
+  <div class="card text-center">
+    <div class="card-header">
+      <img class="mb-2 mt-2 border border-primary rounded-3" src="https://jejuhydrofarms.com/wp-content/uploads/2020/05/blank-profile-picture-973460_1280.png" width="100px" alt="">
+      <h4>{{ contacto.nombre }} {{ contacto.apellido }}</h4>
+    </div>
+    <div class="card-body">
+      <h5><b>Numero:</b> {{ contacto.numero }}</h5>
+      <h5>
+        <b>Correo:</b> {{ contacto.nombre.toLowerCase()
+        }}{{ contacto.apellido.toLowerCase() }}@email.com
+      </h5>
+    </div>
+    <div class="d-flex justify-content-center card-footer text-muted">
+      <a  [routerLink]="['/editar', contacto.id]"
+        ><h5><i class="bi bi-pencil-fill"></i></h5
+      ></a>
+      <a class="ms-3" routerLink="/"
+        ><h5><i style="font-size: large" (click)="eliminarContacto(contacto.id)" class="bi bi-person-dash-fill"></i></h5
+      ></a>
+    </div>
+  </div>
+</div>

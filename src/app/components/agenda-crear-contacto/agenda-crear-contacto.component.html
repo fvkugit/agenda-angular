@@ -1,5 +1,7 @@
 <form class="container mt-3" [formGroup]="crearContacto" (ngSubmit)="crear()">
     <div class="form-group">
+        <h2>{{accion}} contacto</h2>
+        <h5 class="text-danger" *ngIf="error">¡Ups! No hemos podido crear el contacto.</h5>
         <div class="mt-3">
             <label for="nombre">Nombre</label>
             <input formControlName="nombre" type="text" class="form-control" id="nombre" autocomplete="off">
@@ -15,8 +17,15 @@
             <input formControlName="numero" type="number" class="form-control" id="numero" autocomplete="off">
             <span *ngIf="crearContacto.get('numero')?.invalid && crearContacto.get('numero')?.touched" class="text-danger">¡Debes introducir un numero!</span>
         </div>
+        <div class="mt-3">
+            <label for="imagen" class="form-label">Agregar imagen</label>
+            <input (change)="onChange($event)" class="form-control" type="file" id="imagen">
+        </div>
+        <h5 *ngIf="creando" style="text-align: end" class="mt-2 text-success">Creando contacto...</h5>
     </div>
-    <button type="submit" class="btn btn-success mt-5 ml-5 float-end">Crear contacto</button>
+    <button type="submit" [disabled]="crearContacto.invalid" class="btn btn-success mt-5 ml-5 float-end">{{accion}} contacto</button>
+    <button type="button" (click)="onUpload()" class="btn btn-success mt-5 me-3 float-end">Cargar imagen</button>
     <button type="button" class="btn btn-danger mt-5 me-3 float-end">Cancelar</button>
+
 
   </form>
