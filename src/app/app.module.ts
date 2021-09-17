@@ -9,6 +9,7 @@ import { AgendaNavbarComponent } from './components/agenda-navbar/agenda-navbar.
 import { AgendaCrearContactoComponent } from './components/agenda-crear-contacto/agenda-crear-contacto.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AgendaContactosComponent } from './components/agenda-contactos/agenda-contactos.component';
+import { AgendaContactosBuscarComponent } from './components/agenda-contactos-buscar/agenda-contactos-buscar.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { AgendaContactosComponent } from './components/agenda-contactos/agenda-c
     AgendaNavbarComponent,
     AgendaCrearContactoComponent,
     AgendaContactosComponent,
+    AgendaContactosBuscarComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Contacto } from 'src/app/interfaces/Contacto';
 import { ContactoServiceService } from 'src/app/services/contacto-service.service';
 
@@ -11,8 +11,9 @@ import { ContactoServiceService } from 'src/app/services/contacto-service.servic
 export class AgendaContactosComponent implements OnInit {
 
   listContactos: Contacto[] = []
+  searchValue = +this.aRoute.snapshot.paramMap.get('texto')!;
 
-  constructor(private _dataService: ContactoServiceService, private router: Router) { }
+  constructor(private _dataService: ContactoServiceService, private router: Router, private aRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.cargarContactos();

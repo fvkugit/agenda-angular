@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AgendaContactosBuscarComponent } from './components/agenda-contactos-buscar/agenda-contactos-buscar.component';
 import { AgendaContactosComponent } from './components/agenda-contactos/agenda-contactos.component';
 import { AgendaCrearContactoComponent } from './components/agenda-crear-contacto/agenda-crear-contacto.component';
 import { AgendaListaComponent } from './components/agenda-lista/agenda-lista.component';
@@ -10,7 +11,7 @@ const routes: Routes = [
   {path: 'nuevo', component: AgendaCrearContactoComponent},
   {path: 'contactos', component: AgendaContactosComponent},
   {path: 'editar/:id', component: AgendaCrearContactoComponent},
-  {path: 'buscar/:texto', component: AgendaContactosComponent},
+  {path: 'buscar/:texto', component: AgendaContactosBuscarComponent},
   {path: '**', redirectTo: '', pathMatch: 'full'},
 ];
 

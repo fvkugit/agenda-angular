@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -10,14 +11,14 @@ import { FormsModule } from '@angular/forms';
 export class AgendaNavbarComponent implements OnInit {
   busqueda: string;
 
-  constructor() { }
+  constructor(public router: Router) { }
 
   ngOnInit(): void {
     this.busqueda = ""
   }
 
-  text(){
-    console.log(this.busqueda)
+  buscar(){
+    this.router.navigate(["/buscar/"+this.busqueda]);
   }
 
 }

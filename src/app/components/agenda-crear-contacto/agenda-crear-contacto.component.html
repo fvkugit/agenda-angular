@@ -2,7 +2,9 @@
     <div class="form-group">
         <h2>{{accion}} contacto</h2>
         <h5 class="text-danger" *ngIf="error">¡Ups! No hemos podido crear el contacto.</h5>
-        <div class="mt-3">
+
+        <h4>Información personal</h4>
+        <div class="mt-1">
             <label for="nombre">Nombre</label>
             <input formControlName="nombre" type="text" class="form-control" id="nombre" autocomplete="off">
             <span *ngIf="crearContacto.get('nombre')?.invalid && crearContacto.get('nombre')?.touched" class="text-danger">¡Debes introducir un nombre!</span>
@@ -18,7 +20,45 @@
             <span *ngIf="crearContacto.get('numero')?.invalid && crearContacto.get('numero')?.touched" class="text-danger">¡Debes introducir un numero!</span>
         </div>
         <div class="mt-3">
-            <label for="imagen" class="form-label">Agregar imagen</label>
+            <label for="numero">Correo electronico</label>
+            <input formControlName="correo" type="text" class="form-control" id="correo" autocomplete="off">
+            <span *ngIf="crearContacto.get('correo')?.invalid && crearContacto.get('correo')?.touched" class="text-danger">¡Debes introducir un correo!</span>
+        </div>
+        <h4 class="mt-4">Redes sociales</h4>
+        <div class="col-sm-4 my-1 mt-3">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text"><i class="bi bi-github me-2"></i> github.com/</div>
+              </div>
+              <input formControlName="github" type="text" class="form-control" id="github" placeholder="Username" autocomplete="off">
+            </div>
+        </div>
+        <div class="col-sm-4 my-1 mt-3">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text"><i class="bi bi-linkedin me-2"></i> linkedin.com/in/</div>
+              </div>
+              <input formControlName="linkedin" type="text" class="form-control" id="linkedin" placeholder="Username" autocomplete="off">
+            </div>
+        </div>
+        <div class="col-sm-4 my-1 mt-3">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text"><i class="bi bi-twitter me-2"></i> twitter.com/</div>
+              </div>
+              <input formControlName="twitter" type="text" class="form-control" id="twitter" placeholder="Username" autocomplete="off">
+            </div>
+        </div>
+        <div class="col-sm-4 my-1 mt-3">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text"><i class="bi bi-instagram me-2"></i> instagram.com/ </div>
+              </div>
+              <input formControlName="instagram" type="text" class="form-control" id="instagram" placeholder="Username" autocomplete="off">
+            </div>
+        </div>
+        <div class="mt-3">
+            <label for="imagen" class="form-label"><h4 class="mt-4">Agregar imagen</h4></label>
             <input (change)="onChange($event)" class="form-control" type="file" id="imagen">
         </div>
         <h5 *ngIf="creando" style="text-align: end" class="mt-2 text-success">Creando contacto...</h5>

@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="row text-center">
+      <!-- Team item -->
+      <div *ngFor="let contacto of listContactos" class="mt-5 col-xl-3 col-sm-6 mb-5">
+        <div class="bg-white border rounded shadow py-5 px-4">
+          <img
+            src="https://appvital.com/images/profile/file-uploader-api-profile-avatar-2.jpg"
+            alt=""
+            width="100"
+            class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm"
+          />
+          <h5 class="mb-0">{{contacto.nombre}} {{contacto.apellido}}</h5>
+          <span class="small text-muted">{{contacto.nombre.toLowerCase()}}{{contacto.apellido.toLowerCase()}}@mail.com</span>
+          <p class="small text-muted"><i class="bi bi-telephone-fill"></i> +54 {{contacto.numero}}</p>
+          <ul class="social mb-0 list-inline mt-3">
+            <li class="list-inline-item">
+              <a href="#" class="social-link"><i class="bi bi-facebook"></i></a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#" class="social-link"><i class="bi bi-twitter"></i></a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#" class="social-link"><i class="bi bi-instagram"></i></a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#" class="social-link"><i class="bi bi-linkedin"></i></a>
+            </li>
+          </ul>
+          <ul class="mb-0 list-inline mt-3">
+            <li class="list-inline-item">
+              <a href="#" [routerLink]="['/editar', contacto.id]" class="social-link"><i class="bi bi-pencil-fill"></i></a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#" (click)="eliminarContacto(contacto.id)" routerLink="/" class="social-link"><i class="bi bi-person-x-fill"></i></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- End -->
+    </div>
+  </div>
+  

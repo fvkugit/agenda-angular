@@ -34,6 +34,12 @@ export class AgendaCrearContactoComponent implements OnInit {
       nombre: ['', Validators.required],
       apellido: ['', Validators.required],
       numero: ['', Validators.required],
+      correo: ['', Validators.required],
+      github: [''],
+      linkedin: [''],
+      twitter: [''],
+      instagram: [''],
+      imagen: [''],
     });
   }
 
@@ -81,6 +87,12 @@ export class AgendaCrearContactoComponent implements OnInit {
       nombre: this.crearContacto.get('nombre')?.value,
       apellido: this.crearContacto.get('apellido')?.value,
       numero: this.crearContacto.get('numero')?.value.toString(),
+      correo: this.crearContacto.get('correo')?.value,
+      github: this.crearContacto.get('github')?.value,
+      linkedin: this.crearContacto.get('linkedin')?.value,
+      twitter: this.crearContacto.get('twitter')?.value,
+      instagram: this.crearContacto.get('instagram')?.value,
+      imagen: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2ETLxoNnhbC_FhYQPfpIrkcdRwSPYsa-04e2EbKI8RAmvAbg88m0xdAd2Y_xqKpiXWZY&usqp=CAU",
     };
     if (this.ruta == "editar"){ 
       this.actualizarContacto(contact, this.id); 
