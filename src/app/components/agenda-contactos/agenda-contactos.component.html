@@ -1,18 +1,23 @@
 <div class="container">
+
+  <button *ngIf="listContactos.length > 0" type="button" (click)="ocultar()" class="mt-2 btn btn-primary btn-sm"><i class="bi {{accionIcon}} me-2"></i>{{accion}} numeros</button>
+
   <div class="row text-center">
     <h2 *ngIf="listContactos.length === 0" class="mt-3 text-secondary">¡Ups! No se han encontrado contactos, comienza <a routerLink="/nuevo">creando uno nuevo.</a></h2>
     <!-- Team item -->
-    <div *ngFor="let contacto of listContactos" class="mt-5 col-xl-3 col-sm-6 mb-5 contacto-cards">
-      <div class="bg-white border rounded shadow py-5 px-4 contacto-card">
+    <div *ngFor="let contacto of listContactos" class="mt-3 col-xl-3 col-sm-6 mb-2 contacto-cards">
+      <div class="bg-white border rounded shadow py-3 px-4 contacto-card">
         <img
-          src="https://appvital.com/images/profile/file-uploader-api-profile-avatar-2.jpg"
-          alt=""
+          src="{{contacto.imagen}}"
+          alt="Imagen de {{contacto.nombre}}"
           width="100"
+          height="100"
           class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm"
         />
         <h5 class="mb-0">{{contacto.nombre}} {{contacto.apellido}}</h5>
-        <span class="small text-muted">{{contacto.nombre.toLowerCase()}}{{contacto.apellido.toLowerCase()}}@mail.com</span>
-        <p class="small text-muted"><i class="bi bi-telephone-fill"></i> +54 {{contacto.numero}}</p>
+        <span class="small text-muted">{{contacto.correo}}</span>
+        <p *ngIf="this.oculto" class="small text-muted"><i class="bi bi-telephone-fill"></i> {{ numeroOculto(contacto.numero) }}</p>
+        <p *ngIf="!this.oculto" class="small text-muted"><i class="bi bi-telephone-fill"></i> +54 {{contacto.numero }}</p>
         <ul class="social mb-0 list-inline mt-3">
           <li *ngIf="contacto.github !== ''" class="list-inline-item">
             <a href="https://www.twitter.com/{{contacto.github}}" class="social-link"><i class="bi bi-github"></i></a>

@@ -12,6 +12,9 @@ export class AgendaContactosComponent implements OnInit {
 
   listContactos: Contacto[] = []
   searchValue = +this.aRoute.snapshot.paramMap.get('texto')!;
+  oculto: boolean = true;
+  accion: string = "Mostrar";
+  accionIcon : string = "bi-eye-fill"
 
   constructor(private _dataService: ContactoServiceService, private router: Router, private aRoute: ActivatedRoute) { }
 
@@ -33,6 +36,16 @@ export class AgendaContactosComponent implements OnInit {
     }, error=>{
       console.log(error)
     })
+  }
+
+  ocultar(){
+    this.oculto = !this.oculto;
+    if (this.oculto) { this.accion = "Mostrar"; this.accionIcon ="bi bi-eye-fill" } else { this.accion = "Ocultar"; this.accionIcon = "bi-eye-slash-fill" }
+  }
+
+  numeroOculto(numero: string){
+    return numero.replace(/([0-9])/g, "*")
+  
   }
 
 }

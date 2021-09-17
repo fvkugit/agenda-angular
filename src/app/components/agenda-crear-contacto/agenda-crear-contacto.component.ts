@@ -20,12 +20,10 @@ export class AgendaCrearContactoComponent implements OnInit {
   loading: boolean = false;
   error: boolean = false;
   creando: boolean = false;
-  sLink: string = '';
-  base64textString: string;
+  image: string = '';
 
   constructor(
     private fb: FormBuilder,
-    private _upload: UploadFilesService,
     private _dataService: ContactoServiceService,
     private router: Router,
     private aRoute: ActivatedRoute
@@ -56,33 +54,48 @@ export class AgendaCrearContactoComponent implements OnInit {
   onChange(event: any) {
     this.file = event.target.files[0];
   }
-
-  onUpload() {
-    this.loading = !this.loading;
-    console.log(this.file);
-    this._upload.upload(this.file).subscribe((event: any) => {
-      if (typeof event === 'object') {
-        // Short link via api response
-        this.sLink = event.link;
-        this.loading = false; // Flag variable
-      }
+  private readBase64(file: File): Promise<any> {
+    const reader = new FileReader();
+    const future = new Promise((resolve, reject) => {
+      reader.addEventListener('load', function () {
+        resolve(reader.result);
+      }, false);
+      reader.addEventListener('error', function (event) {
+        reject(event);
+      }, false);
+    
+      reader.readAsDataURL(file);
     });
+    return future;
   }
   //
 
   cargarDatos(){
     this._dataService.getContacto(this.id).subscribe(data=>{
+      this.image = data.imagen
       this.crearContacto.patchValue({
         nombre: data.nombre,
         apellido: data.apellido,
         numero: data.numero,
+        correo: data.correo,
+        github: data.github,
+        linkedin: data.linkedin,
+        twitter: data.twitter,
+        instagram: data.instagram,
+        imagen: data.imagen,
       });
     }, error=>{
       console.log(error);
     })
   }
 
-  crear() {
+  async crear() {
+    if(this.file != undefined){ 
+      await this.readBase64(this.file)
+    .then((data) => {
+        this.image = data
+    });
+    }
     const contact: Contacto = {
       nombre: this.crearContacto.get('nombre')?.value,
       apellido: this.crearContacto.get('apellido')?.value,
@@ -92,8 +105,9 @@ export class AgendaCrearContactoComponent implements OnInit {
       linkedin: this.crearContacto.get('linkedin')?.value,
       twitter: this.crearContacto.get('twitter')?.value,
       instagram: this.crearContacto.get('instagram')?.value,
-      imagen: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2ETLxoNnhbC_FhYQPfpIrkcdRwSPYsa-04e2EbKI8RAmvAbg88m0xdAd2Y_xqKpiXWZY&usqp=CAU",
+      imagen: this.image,
     };
+    console.log(contact)
     if (this.ruta == "editar"){ 
       this.actualizarContacto(contact, this.id); 
     }
@@ -115,13 +129,11 @@ export class AgendaCrearContactoComponent implements OnInit {
 
   actualizarContacto(contacto: Contacto, id: number){
     contacto.id = this.id
-    console.log(contacto)
     this._dataService.updateContacto(id, contacto).subscribe(data=>{
       this.router.navigate(['/']);
     }, error=>{
       console.log(error)
     })
   }
-
 
 }

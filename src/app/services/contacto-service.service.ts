@@ -19,7 +19,6 @@ export class ContactoServiceService {
     return this.x.get(this.url + this.api + id);
   }
   createContacto(data: object): Observable<any>{
-    console.log(data)
     return this.x.post(this.url + this.api, data)
   }
   removeContacto(id: number): Observable<any>{
