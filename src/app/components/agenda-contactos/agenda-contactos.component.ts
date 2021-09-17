@@ -10,10 +10,7 @@ import { ContactoServiceService } from 'src/app/services/contacto-service.servic
 })
 export class AgendaContactosComponent implements OnInit {
 
-  listContactos: Contacto[] = [
-    {nombre:"Facundo", apellido:"Barral", numero:"12345"},
-    {nombre:"Lionel", apellido:"Messi", numero:"12345"},
-  ]
+  listContactos: Contacto[] = []
 
   constructor(private _dataService: ContactoServiceService, private router: Router) { }
 

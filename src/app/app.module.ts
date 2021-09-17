@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { AgendaListaComponent } from './components/agenda-lista/agenda-lista.component';
 import { AgendaNavbarComponent } from './components/agenda-navbar/agenda-navbar.component';
 import { AgendaCrearContactoComponent } from './components/agenda-crear-contacto/agenda-crear-contacto.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AgendaContactosComponent } from './components/agenda-contactos/agenda-contactos.component';
 
 @NgModule({
@@ -21,6 +21,7 @@ import { AgendaContactosComponent } from './components/agenda-contactos/agenda-c
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule
   ],

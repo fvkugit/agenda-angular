@@ -10,6 +10,7 @@ const routes: Routes = [
   {path: 'nuevo', component: AgendaCrearContactoComponent},
   {path: 'contactos', component: AgendaContactosComponent},
   {path: 'editar/:id', component: AgendaCrearContactoComponent},
+  {path: 'buscar/:texto', component: AgendaContactosComponent},
   {path: '**', redirectTo: '', pathMatch: 'full'},
 ];
 

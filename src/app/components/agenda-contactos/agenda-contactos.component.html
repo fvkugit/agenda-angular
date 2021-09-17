@@ -1,26 +1,41 @@
-<div
-  *ngFor="let contacto of listContactos"
-  class="me-5 ms-5 mt-5"
->
-  <div class="card text-center">
-    <div class="card-header">
-      <img class="mb-2 mt-2 border border-primary rounded-3" src="https://jejuhydrofarms.com/wp-content/uploads/2020/05/blank-profile-picture-973460_1280.png" width="100px" alt="">
-      <h4>{{ contacto.nombre }} {{ contacto.apellido }}</h4>
+<div class="container">
+  <div class="row text-center">
+    <!-- Team item -->
+    <div *ngFor="let contacto of listContactos" class="mt-5 col-xl-3 col-sm-6 mb-5">
+      <div class="bg-white border rounded shadow py-5 px-4">
+        <img
+          src="https://appvital.com/images/profile/file-uploader-api-profile-avatar-2.jpg"
+          alt=""
+          width="100"
+          class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm"
+        />
+        <h5 class="mb-0">{{contacto.nombre}} {{contacto.apellido}}</h5>
+        <span class="small text-muted">{{contacto.nombre.toLowerCase()}}{{contacto.apellido.toLowerCase()}}@mail.com</span>
+        <p class="small text-muted"><i class="bi bi-telephone-fill"></i> +54 {{contacto.numero}}</p>
+        <ul class="social mb-0 list-inline mt-3">
+          <li class="list-inline-item">
+            <a href="#" class="social-link"><i class="bi bi-facebook"></i></a>
+          </li>
+          <li class="list-inline-item">
+            <a href="#" class="social-link"><i class="bi bi-twitter"></i></a>
+          </li>
+          <li class="list-inline-item">
+            <a href="#" class="social-link"><i class="bi bi-instagram"></i></a>
+          </li>
+          <li class="list-inline-item">
+            <a href="#" class="social-link"><i class="bi bi-linkedin"></i></a>
+          </li>
+        </ul>
+        <ul class="mb-0 list-inline mt-3">
+          <li class="list-inline-item">
+            <a href="#" [routerLink]="['/editar', contacto.id]" class="social-link"><i class="bi bi-pencil-fill"></i></a>
+          </li>
+          <li class="list-inline-item">
+            <a href="#" (click)="eliminarContacto(contacto.id)" routerLink="/" class="social-link"><i class="bi bi-person-x-fill"></i></a>
+          </li>
+        </ul>
+      </div>
     </div>
-    <div class="card-body">
-      <h5><b>Numero:</b> {{ contacto.numero }}</h5>
-      <h5>
-        <b>Correo:</b> {{ contacto.nombre.toLowerCase()
-        }}{{ contacto.apellido.toLowerCase() }}@email.com
-      </h5>
-    </div>
-    <div class="d-flex justify-content-center card-footer text-muted">
-      <a  [routerLink]="['/editar', contacto.id]"
-        ><h5><i class="bi bi-pencil-fill"></i></h5
-      ></a>
-      <a class="ms-3" routerLink="/"
-        ><h5><i style="font-size: large" (click)="eliminarContacto(contacto.id)" class="bi bi-person-dash-fill"></i></h5
-      ></a>
-    </div>
+    <!-- End -->
   </div>
 </div>
