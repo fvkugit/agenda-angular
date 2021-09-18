@@ -45,7 +45,15 @@ export class AgendaContactosComponent implements OnInit {
 
   numeroOculto(numero: string){
     return numero.replace(/([0-9])/g, "*")
-  
+  }
+
+  ordenarContactos(x: string){
+    if (x == "nombre"){
+      this.listContactos.sort((a,b) => (a.nombre > b.nombre) ? 1 : ((b.nombre > a.nombre) ? -1 : 0))
+    }else
+    {
+      this.listContactos.sort((a,b) => (a.apellido > b.apellido) ? 1 : ((b.apellido > a.apellido) ? -1 : 0))
+    }
   }
 
 }
