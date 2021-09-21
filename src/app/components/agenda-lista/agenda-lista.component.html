@@ -24,7 +24,7 @@
       <td>{{ contacto.linkedin || " ——— " }}</td>
       <td>{{ contacto.twitter || " ——— " }}</td>
       <td>{{ contacto.instagram || " ——— " }}</td>
-      <td>{{ contacto.fechaCreacion || "-- / -- / --" }}</td>
+      <td>{{ contacto.fechaCreacion | date:'dd/MM/yy [hh:mm]' }}</td>
       <td>
         <a [routerLink]="['/editar', contacto.id]"><h5><i class="bi bi-pencil-fill"></i></h5></a>
       </td>
