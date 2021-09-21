@@ -16,10 +16,6 @@
             <a class="nav-link" routerLink='/tabla'><i class="bi bi-card-list me-2"></i>Ver lista</a>
           </li>
         </ul>
-        <form class="d-flex">
-          <input class="form-control me-2" name="busqueda" type="text" [(ngModel)]="busqueda" (input)="buscar()" placeholder="Search" aria-label="Search" autocomplete="off">
-          <button class="btn btn-outline-primary" type="submit" [routerLink]="['/buscar', busqueda]" >Search</button>
-        </form>
       </div>
     </div>
   </nav>

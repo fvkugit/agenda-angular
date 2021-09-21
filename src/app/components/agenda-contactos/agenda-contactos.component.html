@@ -1,22 +1,39 @@
 <div class="container">
+  
+  <div class="d-flex mb-3">
+    <button *ngIf="listContactos.length > 0" type="button" (click)="ocultar()" class="mt-2 btn btn-primary btn-sm"><i class="bi {{accionIcon}} me-2"></i>{{accion}} numeros</button>
 
-  <button *ngIf="listContactos.length > 0" type="button" (click)="ocultar()" class="mt-2 btn btn-primary btn-sm"><i class="bi {{accionIcon}} me-2"></i>{{accion}} numeros</button>
-
-  <div class="btn-group">
-    <button type="button" class="ms-3 mt-2 btn btn-primary btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-      <i class="bi bi-list-ol"></i> Ordenar
-    </button>
-    <ul class="dropdown-menu">
-      <li><a class="dropdown-item" (click)="ordenarContactos('nombre')" href="#">Nombre</a></li>
-      <li><a class="dropdown-item" (click)="ordenarContactos('apellido')" href="#">Apellido</a></li>
-      <li><a class="dropdown-item" href="#">Más reciente</a></li>
-    </ul>
+    <div class="btn-group">
+      <button type="button" class="ms-3 mt-2 btn btn-primary btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="bi bi-list-ol"></i> Ordenar
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" (click)="ordenarContactos('nombre', orden)">Nombre</a></li>
+        <li><a class="dropdown-item" (click)="ordenarContactos('apellido', orden)">Apellido</a></li>
+        <li><a class="dropdown-item">Más reciente</a></li>
+      </ul>
+    </div>
+    <div class="btn-group">
+      <button type="button" class="ms-3 mt-2 btn btn-primary btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="bi bi-filter"></i> Forma
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" (click)="ordenarContactos(ordenarBy, true)">Ascendente</a></li>
+        <li><a class="dropdown-item" (click)="ordenarContactos(ordenarBy, false)">Descendiente</a></li>
+      </ul>
+    </div>
   </div>
+
+
+    <div class="col-sm-4 d-inline-flex">
+      <input type="text" [(ngModel)]="busqueda" (input)="buscar()" class="form-control d-inline-flex" placeholder="Buscar">
+    </div>
+  
 
   <div class="row text-center">
     <h2 *ngIf="listContactos.length === 0" class="mt-3 text-secondary">¡Ups! No se han encontrado contactos, comienza <a routerLink="/nuevo">creando uno nuevo.</a></h2>
     <!-- Team item -->
-    <div *ngFor="let contacto of listContactos" class="mt-3 col-xl-3 col-sm-6 mb-2 contacto-cards">
+    <div *ngFor="let contacto of contactosMostrados" class="mt-3 col-xl-3 col-sm-6 mb-2 contacto-cards">
       <div class="bg-white border rounded shadow py-3 px-4 contacto-card">
         <img
           src="{{contacto.imagen}}"

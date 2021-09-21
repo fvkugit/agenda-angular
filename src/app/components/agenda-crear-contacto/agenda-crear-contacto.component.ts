@@ -83,6 +83,7 @@ export class AgendaCrearContactoComponent implements OnInit {
         twitter: data.twitter,
         instagram: data.instagram,
         imagen: data.imagen,
+        fechaCreacion: data.fechaCreacion
       });
     }, error=>{
       console.log(error);
@@ -106,6 +107,7 @@ export class AgendaCrearContactoComponent implements OnInit {
       twitter: this.crearContacto.get('twitter')?.value,
       instagram: this.crearContacto.get('instagram')?.value,
       imagen: this.image,
+      fechaCreacion: new Date
     };
     console.log(contact)
     if (this.ruta == "editar"){ 

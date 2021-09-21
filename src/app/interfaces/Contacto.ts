@@ -9,4 +9,5 @@ export interface Contacto{
     twitter: string;
     instagram: string;
     imagen: string;
+    fechaCreacion: Date;
 }

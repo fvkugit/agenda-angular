@@ -11,10 +11,14 @@ import { ContactoServiceService } from 'src/app/services/contacto-service.servic
 export class AgendaContactosComponent implements OnInit {
 
   listContactos: Contacto[] = []
+  contactosMostrados: Contacto[] = []
   searchValue = +this.aRoute.snapshot.paramMap.get('texto')!;
   oculto: boolean = true;
   accion: string = "Mostrar";
   accionIcon : string = "bi-eye-fill"
+  busqueda: string = ""
+  ordenarBy: string = "nombre"
+  orden: boolean = true;
 
   constructor(private _dataService: ContactoServiceService, private router: Router, private aRoute: ActivatedRoute) { }
 
@@ -25,6 +29,7 @@ export class AgendaContactosComponent implements OnInit {
   cargarContactos(){
     this._dataService.getContactos().subscribe(data=>{
       this.listContactos = data;
+      this.contactosMostrados = data;
     }, error=>{
       console.log(error)
     })
@@ -47,12 +52,37 @@ export class AgendaContactosComponent implements OnInit {
     return numero.replace(/([0-9])/g, "*")
   }
 
-  ordenarContactos(x: string){
-    if (x == "nombre"){
-      this.listContactos.sort((a,b) => (a.nombre > b.nombre) ? 1 : ((b.nombre > a.nombre) ? -1 : 0))
-    }else
-    {
-      this.listContactos.sort((a,b) => (a.apellido > b.apellido) ? 1 : ((b.apellido > a.apellido) ? -1 : 0))
+  ordenarContactos(x: string, z: boolean){
+    this.ordenarBy = x;
+    this.orden = z;
+    if(this.orden){
+      if (x == "nombre"){
+        this.listContactos.sort((a,b) => (a.nombre > b.nombre) ? 1 : ((b.nombre > a.nombre) ? -1 : 0))
+      }else if(x == "apellido")
+      {
+        this.listContactos.sort((a,b) => (a.apellido > b.apellido) ? 1 : ((b.apellido > a.apellido) ? -1 : 0))
+      }else if(x == "apellido")
+      {
+        this.listContactos.sort((a,b) => (a.fechaCreacion > b.fechaCreacion) ? 1 : ((b.fechaCreacion > a.fechaCreacion) ? -1 : 0))
+      }
+    }else{
+      if (x == "nombre"){
+        this.listContactos.sort((a,b) => (a.nombre < b.nombre) ? 1 : ((b.nombre < a.nombre) ? -1 : 0))
+      }else if(x == "apellido")
+      {
+        this.listContactos.sort((a,b) => (a.apellido < b.apellido) ? 1 : ((b.apellido < a.apellido) ? -1 : 0))
+      }else if(x == "apellido")
+      {
+        this.listContactos.sort((a,b) => (a.fechaCreacion < b.fechaCreacion) ? 1 : ((b.fechaCreacion < a.fechaCreacion) ? -1 : 0))
+      }
+    }
+  }
+
+  buscar(){
+    if(this.busqueda!=""){
+      this.contactosMostrados = this.listContactos.filter(contacto => (contacto.nombre + " " + contacto.apellido).toLocaleLowerCase().includes(this.busqueda.toLocaleLowerCase()));
+    }else{
+      this.contactosMostrados = this.listContactos
     }
   }
 
